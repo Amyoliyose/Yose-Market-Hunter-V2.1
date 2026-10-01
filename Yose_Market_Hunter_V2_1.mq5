@@ -103,27 +103,6 @@ void ProcessSymbol(string s,int index)
 
    if(InpOneTradePerBar && lastBar[index]==bar) return;
    lastBar[index]=bar;
-
-   int hFast=iMA(s,InpTimeframe,InpFastEMA,0,MODE_EMA,PRICE_CLOSE);
-   int hSlow=iMA(s,InpTimeframe,InpSlowEMA,0,MODE_EMA,PRICE_CLOSE);
-   int hRSI=iRSI(s,InpTimeframe,InpRSIPeriod,PRICE_CLOSE);
-   int hATR=iATR(s,InpTimeframe,InpATRPeriod);
-
-   if(hFast==INVALID_HANDLE || hSlow==INVALID_HANDLE ||
-      hRSI==INVALID_HANDLE || hATR==INVALID_HANDLE) return;
-
-   double f[],sl[],r[],a[];
-   ArraySetAsSeries(f,true);
-   ArraySetAsSeries(sl,true);
-   ArraySetAsSeries(r,true);
-   ArraySetAsSeries(a,true);
-
-   bool ok=CopyBuffer(hFast,0,0,2,f)==2 &&
-           CopyBuffer(hSlow,0,0,2,sl)==2 &&
-           CopyBuffer(hRSI,0,0,2,r)==2 &&
-           CopyBuffer(hATR,0,0,2,a)==2;
-
-   Indicator
    int hFast=iMA(s,InpTimeframe,InpFastEMA,0,MODE_EMA,PRICE_CLOSE);
    int hSlow=iMA(s,InpTimeframe,InpSlowEMA,0,MODE_EMA,PRICE_CLOSE);
    int hRSI=iRSI(s,InpTimeframe,InpRSIPeriod,PRICE_CLOSE);
