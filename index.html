@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yose Market Hunter V2.1</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #080b12;
+  color: #ffffff;
+  padding-bottom: 80px;
+}
+
+.header {
+  padding: 22px 18px;
+  background: #111722;
+  border-bottom: 1px solid #263044;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.version {
+  color: #8c98ad;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.status-card {
+  margin: 18px;
+  padding: 20px;
+  background: #121925;
+  border-radius: 18px;
+  border: 1px solid #273248;
+}
+
+.status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-label {
+  color: #9ca8ba;
+  font-size: 13px;
+}
+
+.status-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff5b5b;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.stat {
+  background: #0c111b;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.stat small {
+  color: #8d99ad;
+}
+
+.stat strong {
+  display: block;
+  margin-top: 7px;
+  font-size: 19px;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 0 18px;
+}
+
+button {
+  border: 0;
+  border-radius: 13px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.start {
+  background: #168f5b;
+}
+
+.stop {
+  background: #b52d3a;
+}
+
+.emergency {
+  grid-column: 1 / 3;
+  background: #d63b3b;
+}
+
+.section {
+  margin: 22px 18px 0;
+}
+
+.section h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.market {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #121925;
+  border: 1px solid #273248;
+  padding: 16px;
+  margin-bottom: 10px;
+  border-radius: 14px;
+}
+
+.market small {
+  color: #8d99ad;
+}
+
+.badge {
+  padding: 7px 10px;
+  border-radius: 20px;
+  background: #263044;
+  font-size: 12px;
+}
+
+.news {
+  background: #121925;
+  border: 1px solid #273248;
+  padding: 16px;
+  border-radius: 14px;
+  line-height: 1.8;
+  color: #c8d0dc;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #111722;
+  border-top: 1px solid #263044;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 5px;
+}
+
+.bottom button {
+  background: transparent;
+  padding: 8px;
+  font-size: 12px;
+  color: #9ca8ba;
+}
+
+.notice {
+  margin: 18px;
+  padding: 14px;
+  background: #171d29;
+  border-radius: 12px;
+  color: #9ca8ba;
+  font-size: 12px;
+  line-height: 1.5;
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo">Yose Market Hunter</div>
+  <div class="version">V2.1 • Automated Trading Dashboard</div>
+</header>
+
+<section class="status-card">
+
+  <div class="status">
+    <div>
+      <div class="status-label">BOT STATUS</div>
+      <div id="status" class="status-value">STOPPED</div>
+    </div>
+
+    <div class="badge">DEMO MODE</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <small>Balance</small>
+      <strong>$10,000.00</strong>
+    </div>
+
+    <div class="stat">
+      <small>Daily P&L</small>
+      <strong>$0.00</strong>
+    </div>
+
+    <div class="stat">
+      <small>Open Trades</small>
+      <strong>0</strong>
+    </div>
+
+    <div class="stat">
+      <small>Win Rate</small>
+      <strong>0%</strong>
+    </div>
+  </div>
+
+</section>
+
+<div class="controls">
+  <button class="start" onclick="startBot()">START BOT</button>
+  <button class="stop" onclick="stopBot()">STOP BOT</button>
+  <button class="emergency" onclick="emergencyStop()">EMERGENCY STOP</button>
+</div>
+
+<section class="section">
+  <h2>Markets</h2>
+
+  <div class="market">
+    <div>
+      <strong>Gold</strong><br>
+      <small>XAUUSD</small>
+    </div>
+    <div class="badge">READY</div>
+  </div>
+
+  <div class="market">
+    <div>
+      <strong>Bitcoin</strong><br>
+      <small>BTCUSD</small>
+    </div>
+    <div class="badge">READY</div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Fundamental News Filter</h2>
+
+  <div class="news">
+    ✓ NFP<br>
+    ✓ FOMC<br>
+    ✓ CPI<br>
+    ✓ PPI<br>
+    <br>
+    High-impact news protection enabled.
+  </div>
+</section>
+
+<div class="notice">
+  DEMO/PAPER CONTROL DASHBOARD. MT5 execution will require a separate
+  connection to an MT5-running environment. No live trading is performed
+  by this page alone.
+</div>
+
+<nav class="bottom">
+  <button>Dashboard</button>
+  <button>Strategy</button>
+  <button>Settings</button>
+  <button>Licenses</button>
+</nav>
+
+<script>
+
+function startBot() {
+  document.getElementById("status").innerText = "RUNNING";
+  document.getElementById("status").style.color = "#27c47d";
+}
+
+function stopBot() {
+  document.getElementById("status").innerText = "STOPPED";
+  document.getElementById("status").style.color = "#ff5b5b";
+}
+
+function emergencyStop() {
+  document.getElementById("status").innerText = "EMERGENCY STOP";
+  document.getElementById("status").style.color = "#ff3333";
+}
+
+</script>
+
+</body>
+</html>
